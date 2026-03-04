@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         COMPOSE_FILE = 'docker-compose.yml'
-        DOCKER_REGISTRY = 'walidbadry' // اسم حسابك على Docker Hub
+        DOCKER_REGISTRY = 'walid123321' // اسم حسابك على Docker Hub
         GITHUB_CREDENTIALS = 'github-token' // الـ Jenkins credential ID
         DOCKER_CREDENTIALS = 'dockerhub-token' // credential ID للـ Docker Hub
     }
