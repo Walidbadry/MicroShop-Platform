@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  users-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: usersdb
+  orders-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ordersdb
+  users:
+    build: ./users-service
+    depends_on: [users-db]
+  orders:
+    build: ./orders-service
+    depends_on: [orders-db]
+  gateway:
+    build: ./gateway
+    depends_on: [users,orders]
+    ports:
+      - "8080:8080"
+  frontend:
+    build: ./frontend
+    depends_on: [gateway]
+    ports:
+      - "3000:80"
